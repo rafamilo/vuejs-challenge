@@ -1,4 +1,4 @@
 export default {
-  getShoppings: state => state.shoppings,
-  getLoadingList: state => state.loading.list,
+  getColumns: state => state.columns,
+  getLoadingColumns: state => state.loading.columns,
 }

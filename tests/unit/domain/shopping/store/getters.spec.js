@@ -2,11 +2,11 @@ import getters from "@/domain/shopping/store/getters";
 import state from "@/domain/shopping/store/state";
 
 describe("Shopping getters", () => {
-  it("getShoppings needs return state.shoppings", () => {
-    expect(getters.getShoppings(state)).toEqual(state.shoppings);
+  it("getColumns needs return state.columns", () => {
+    expect(getters.getColumns(state)).toEqual(state.columns);
   });
 
-  it("getLoadingList needs return state.loading.list", () => {
-    expect(getters.getLoadingList(state)).toEqual(state.loading.list);
+  it("getLoadingColumns needs return state.loading.columns", () => {
+    expect(getters.getLoadingColumns(state)).toEqual(state.loading.columns);
   });
 });
