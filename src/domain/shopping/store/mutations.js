@@ -1,5 +1,7 @@
 export default {
-  SET_SHOPPINGS: (state, shoppings) => state.shoppings = shoppings,
-  PUSH_SHOPPINGS: (state, shopping) => state.shoppings.push(shopping),
-  SET_LOADING_LIST: (state, loading) => state.loading.list = loading,
-}
+  PUSH_COLUMN: (state, column) => state.columns.push(column),
+  REMOVE_COLUMN: (state, index) => state.columns.splice(index, 1),
+  PUSH_SHOPPING: (state, { columnIndex, shopping }) => state.columns[columnIndex].push(shopping),
+  REMOVE_SHOPPING: (state, { columnIndex, shoppingIndex }) => state.columns[columnIndex].splice(shoppingIndex, 1),
+  SET_LOADING_COLUMNS: (state, loading) => (state.loading.list = loading)
+};

@@ -1,4 +1,4 @@
 export default {
-  loading: { list: false },
-  shoppings: []
+  loading: { columns: false },
+  columns: []
 };
