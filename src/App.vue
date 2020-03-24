@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <button @click="goToShoppings()">Shoppings</button>
-    <router-view/>
+    <challenge-header />
+    <router-view />
   </div>
 </template>
 
 <script>
+import ChallengeHeader from "@/components/ChallengeHeader.vue";
 export default {
-  name: 'App',
-  methods: {
-    goToShoppings() {
-      this.$router.push({ name: 'shoppings' });
-    },
-  }
-}
+  name: "App",
+  components: { ChallengeHeader }
+};
 </script>
