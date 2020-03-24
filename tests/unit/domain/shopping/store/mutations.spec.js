@@ -49,7 +49,7 @@ describe("Shopping mutations", () => {
 
   it("SET_LOADING_COLUMNS needs set new value to loading", () => {
     const loading = true;
-    mutations.SET_LOADING_COLUMN(state, loading);
-    expect(getters.getLoadingColumn(state)).toEqual(loading);
+    mutations.SET_LOADING_COLUMNS(state, loading);
+    expect(getters.getLoadingColumns(state)).toEqual(loading);
   });
 });

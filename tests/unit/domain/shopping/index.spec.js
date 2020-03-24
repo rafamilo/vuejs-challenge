@@ -1,4 +1,4 @@
-import Shopping from "@/domain/shopping";
+import Shopping from "@/domain/shopping/models/Shopping";
 
 describe("Shopping", () => {
   it('Should to return id null and text null when not pass parameters', () => {
