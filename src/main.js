@@ -4,11 +4,18 @@ import "es6-promise/auto";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
 import RouterConfig from "@/configs/RouterConfig";
-import VuexStoreConfig from "@/configs/VuexStoreConfig"
+import VuexStoreConfig from "@/configs/VuexStoreConfig";
+import { BootstrapVue } from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+// Install BootstrapVue
+Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
 
 const router = new RouterConfig();
 const store = new VuexStoreConfig();
@@ -16,5 +23,5 @@ const store = new VuexStoreConfig();
 new Vue({
   router,
   store,
-  render: h => h(App),
-}).$mount('#app');
+  render: h => h(App)
+}).$mount("#app");
