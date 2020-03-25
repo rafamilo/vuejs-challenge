@@ -1,5 +1,5 @@
 <template>
-  <div class="Shoppings d-flex flex-column">
+  <div class="Shoppings d-flex">
     <draggable
       class="columns d-flex"
       v-model="columns"
@@ -8,6 +8,9 @@
       @end="drag=false"
     >
       <column class="column" v-for="column in columns" :key="column.id" :column="column" />
+      <div class="plus-column d-flex align-items-center justify-content-center">
+        <i class="fas fa-plus"></i>
+      </div>
     </draggable>
   </div>
 </template>
@@ -59,6 +62,30 @@ export default {
     @media (min-width: 600px) {
       padding-left: 2vw;
     }
+  }
+
+  .plus-column {
+    cursor: pointer;
+    -webkit-box-shadow: 0px 12px 9px -5px rgba(0, 0, 0, 0.41);
+    -moz-box-shadow: 0px 12px 9px -5px rgba(0, 0, 0, 0.41);
+    box-shadow: 0px 12px 9px -5px rgba(0, 0, 0, 0.41);
+
+    &:active {
+      background-color: red;
+      -webkit-box-shadow: 0px 10px 9px -5px rgba(0, 0, 0, 0.41);
+      -moz-box-shadow: 0px 10px 9px -5px rgba(0, 0, 0, 0.41);
+      box-shadow: 0px 10px 9px -5px rgba(0, 0, 0, 0.41);
+    }
+
+    margin-left: -20px;
+    background-color: #f16d3f;
+    border-radius: 50%;
+    color: #fff;
+    min-width: 70px;
+    max-width: 70px;
+    min-height: 70px;
+    max-height: 70px;
+    font-size: 40px;
   }
 }
 </style>

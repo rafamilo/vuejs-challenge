@@ -6,6 +6,11 @@
       </template>
       <b-form-input></b-form-input>
     </b-input-group>
+    <div class="order d-flex align-items-center justify-content-end">
+      <span>Order</span>
+      <i class="fas fa-sort-up" />
+      <i class="fas fa-sort-down" />
+    </div>
     <draggable v-model="column.shoppings" group="shoppings" @start="drag=true" @end="drag=false">
       <shopping v-for="shopping in column.shoppings" :key="shopping.id" :shopping="shopping" />
     </draggable>
@@ -43,6 +48,23 @@ export default {
   b-input-group {
     min-width: 100%;
     border-radius: 5px;
+  }
+
+  .order {
+    span {
+      display: block;
+      margin-right: 10px;
+      margin-bottom: -5px;
+    }
+    .fa-sort-up {
+      margin-bottom: -20px;
+    }
+    .fa-sort-down {
+      margin-top: -15px;
+    }
+    svg {
+      font-size: 40px;
+    }
   }
 }
 </style>

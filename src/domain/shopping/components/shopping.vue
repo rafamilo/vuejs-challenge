@@ -18,13 +18,13 @@ export default {
 <style scoped lang='scss'>
 .shopping {
   cursor: pointer;
-  background-color: lightblue;
+  background-color: #e8eaf6;
   padding: 1px 15px;
   min-width: 100%;
   min-height: 35px;
   max-height: 35px;
   div:first-child {
-    background-color: #6d6d6d;
+    background-color: #616161;
     color: #fff;
     border-radius: 50%;
     width: 25px;
