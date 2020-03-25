@@ -7,9 +7,18 @@
       @start="drag=true"
       @end="drag=false"
     >
-      <column class="column" v-for="column in columns" :key="column.id" :column="column" />
-      <div class="plus-column d-flex align-items-center justify-content-center">
-        <i class="fas fa-plus"></i>
+      <column
+        class="column"
+        v-for="(column, index) in columns"
+        :key="index"
+        :columnIndex="index"
+        :column="column"
+      />
+      <div
+        class="plus-column d-flex align-items-center justify-content-center"
+        @click="addColumn()"
+      >
+        <i class="fas fa-plus" />
       </div>
     </draggable>
   </div>
@@ -17,8 +26,9 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-import column from "../components/column";
 import draggable from "vuedraggable";
+import column from "../components/column";
+import Column from "../models/Column";
 const { mapGetters, mapMutations } = createNamespacedHelpers("Shopping");
 
 export default {
@@ -39,14 +49,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations([
-      "PUSH_COLUMN",
-      "SET_COLUMNS",
-      "REMOVE_COLUMN",
-      "PUSH_SHOPPING",
-      "REMOVE_SHOPPING",
-      "SET_LOADING_COLUMNS"
-    ])
+    ...mapMutations(["PUSH_COLUMN", "SET_COLUMNS"]),
+    addColumn() {
+      return this.PUSH_COLUMN(new Column());
+    }
   }
 };
 </script>

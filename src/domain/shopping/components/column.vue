@@ -6,20 +6,35 @@
       </template>
       <b-form-input></b-form-input>
     </b-input-group>
-    <div class="order d-flex align-items-center justify-content-end">
-      <span>Order</span>
-      <i class="fas fa-sort-up" />
-      <i class="fas fa-sort-down" />
+    <div class="order d-flex align-items-center justify-content-between pt-2">
+      <b-button pill size="sm" variant="success" @click="addShopping()">
+        <i class="fas fa-plus" />
+      </b-button>
+      <div class="text d-flex align-items-center justify-content-end">
+        <span>Order</span>
+        <i class="fas fa-sort-up" />
+        <i class="fas fa-sort-down" />
+      </div>
     </div>
     <draggable v-model="column.shoppings" group="shoppings" @start="drag=true" @end="drag=false">
-      <shopping v-for="shopping in column.shoppings" :key="shopping.id" :shopping="shopping" />
+      <shopping
+        v-for="(shopping, index) in column.shoppings"
+        :key="index"
+        :shoppingIndex="index"
+        :columnIndex="columnIndex"
+        :shopping="shopping"
+      />
+      <div class="footer mt-3" slot="footer" />
     </draggable>
   </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
 import shopping from "./shopping";
 import draggable from "vuedraggable";
+import Shopping from "../models/Shopping";
+const { mapMutations } = createNamespacedHelpers("Shopping");
 
 export default {
   name: "column",
@@ -27,12 +42,26 @@ export default {
     shopping,
     draggable
   },
-  props: { column: { type: Object, default: () => {} } }
+  props: {
+    column: { type: Object, default: () => {} },
+    columnIndex: { type: Number, required: true }
+  },
+  methods: {
+    ...mapMutations(["PUSH_SHOPPING"]),
+    addShopping() {
+      const randId = Math.ceil(Math.random() * 1000);
+      this.PUSH_SHOPPING({
+        columnIndex: this.columnIndex,
+        shopping: new Shopping({ id: randId, text: `Exemple ${randId}` })
+      });
+    }
+  }
 };
 </script>
 
 <style scoped lang='scss'>
 .column {
+  background-color: #fff;
   padding: 10px;
   margin-right: 10vw;
   overflow-y: scroll;
@@ -51,20 +80,30 @@ export default {
   }
 
   .order {
-    span {
-      display: block;
-      margin-right: 10px;
-      margin-bottom: -5px;
+    .text {
+      width: 50%;
+      span {
+        display: block;
+        margin-right: 10px;
+        margin-bottom: -5px;
+      }
+      .fa-sort-up {
+        margin-bottom: -20px;
+      }
+      .fa-sort-down {
+        margin-top: -15px;
+      }
+      svg {
+        font-size: 40px;
+      }
     }
-    .fa-sort-up {
-      margin-bottom: -20px;
-    }
-    .fa-sort-down {
-      margin-top: -15px;
-    }
-    svg {
-      font-size: 40px;
-    }
+  }
+
+  .footer {
+    background-color: #c7c7c7;
+    width: 100%;
+    min-height: 40px;
+    max-height: 40px;
   }
 }
 </style>

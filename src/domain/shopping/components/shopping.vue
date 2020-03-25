@@ -4,14 +4,34 @@
       <i class="fas fa-shopping-cart" />
     </div>
     {{shopping.text}}
-    <i class="fas fa-info-circle position-absolute" :title="shopping.id"/>
+    <i class="fas fa-info-circle position-absolute" :title="shopping.id" />
+    <div class="remove-shopping position-absolute" @click="removeShopping()">
+      <i class="fas fa-times"/>
+    </div>
   </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapMutations } = createNamespacedHelpers("Shopping");
+
 export default {
   name: "shopping",
-  props: { shopping: { type: Object, default: () => {} } }
+  props: {
+    shopping: { type: Object, default: () => {} },
+    columnIndex: { type: Number },
+    shoppingIndex: { type: Number }
+  },
+  methods: {
+    ...mapMutations(["REMOVE_SHOPPING"]),
+    removeShopping() {
+      console.log(this.columnIndex, this.shoppingInde);
+      this.REMOVE_SHOPPING({
+        columnIndex: this.columnIndex,
+        shoppingIndex: this.shoppingIndex
+      });
+    }
+  }
 };
 </script>
 
@@ -37,11 +57,12 @@ export default {
     }
   }
   .fa-info-circle {
+    right: 30px;
+  }
+  .remove-shopping {
     right: 0;
     margin-right: 12px;
     color: #6d6d6d;
-    width: 12px;
-    height: 12px;
   }
 }
 </style>
