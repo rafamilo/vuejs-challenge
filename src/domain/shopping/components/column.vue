@@ -32,7 +32,7 @@ export default {
   margin-right: 10vw;
   overflow-y: scroll;
   min-height: 80vh;
-  min-width: 60vw;
+  min-width: 70vw;
   border: thin solid #000;
 
   @media (min-width: 600px) {
