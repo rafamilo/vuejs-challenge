@@ -1,5 +1,8 @@
 <template>
   <div class="column">
+    <b-button class="remove-column" pill size="sm" variant="success" @click="removeColumn()">
+        <i class="fas fa-times" />
+      </b-button>
     <b-input-group slot="header">
       <template v-slot:append>
         <b-input-group-text>Go!</b-input-group-text>
@@ -47,13 +50,16 @@ export default {
     columnIndex: { type: Number, required: true }
   },
   methods: {
-    ...mapMutations(["PUSH_SHOPPING"]),
+    ...mapMutations(["PUSH_SHOPPING", "REMOVE_COLUMN"]),
     addShopping() {
       const randId = Math.ceil(Math.random() * 1000);
       this.PUSH_SHOPPING({
         columnIndex: this.columnIndex,
         shopping: new Shopping({ id: randId, text: `Exemple ${randId}` })
       });
+    },
+    removeColumn() {
+      this.REMOVE_COLUMN(this.columnIndex);
     }
   }
 };
@@ -68,6 +74,13 @@ export default {
   min-height: 80vh;
   min-width: 70vw;
   border: thin solid #000;
+
+  .remove-column {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-bottom: 10px;
+  }
 
   @media (min-width: 600px) {
     min-width: 20vw;
